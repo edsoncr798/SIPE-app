@@ -8,7 +8,7 @@ const state = reactive({
 const getters = {
     getUser: () => state.user,
 
-    goToWhassap: () => {
+    goToWhatsapp: () => {
         const user = state.user;
         if (user.phone) {
             const phone = user.phone.replace(/ /g, '');
@@ -22,6 +22,10 @@ const getters = {
     getFullName: () => {
         const user = state.user;
         return `${user.first_name} ${user.last_name}`;
+    },
+
+    getCountry: () => {
+      return state.user.country;
     },
 
     getIsLoggedIn: () => state.isLoggedIn,

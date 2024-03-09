@@ -41,7 +41,7 @@ const sendLogin = async () => {
 </script>
 
 <template>
-  <div class=" flex ">
+  <div class="flex">
     <el-form
       :model="model"
       :rules="loginRules"
@@ -53,12 +53,12 @@ const sendLogin = async () => {
       </div>
       <div class="w-1/2 flex flex-col items-center">
         <h1 class="text-center text-2xl font-bold p-5 text-[#409eff]">Log in</h1>
-        <el-form-item prop="user_name" class="custom-margin w-full">
+        <el-form-item prop="email" class="custom-margin w-full">
           <el-input v-model="model.email"  placeholder="correo electronico"></el-input>
         </el-form-item>
 
         <el-form-item prop="password" class="custom-margin w-full">
-          <el-input v-model="model.password"  type="password" placeholder="contraseña"></el-input>
+          <el-input v-model="model.password" show-password  type="password" placeholder="contraseña"></el-input>
         </el-form-item>
 
         <el-form-item class="custom-margin w-full">

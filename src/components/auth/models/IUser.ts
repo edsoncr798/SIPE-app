@@ -8,9 +8,11 @@ export interface IUser {
   first_name: string;
   last_name: string;
   email: string;
+  career: string;
   photo: string ;
   phone: string ;
-  background_photo?: string;
+  language?: string;
+  background_photo: string;
   country?: string;
   city?: string;
   password?: string;

@@ -58,8 +58,9 @@ const goToProfile = () => {
         <el-menu v-else mode="horizontal" :ellipsis="false">
           <el-sub-menu index="1">
             <template #title>
-              <div class="flex flex-col justify-center items-center">
-                  <Avatar class="bg-slate-500 w-7 rounded-full p-1" />
+              <div class="flex flex-col justify-center items-center ">
+                  <el-image v-if="user.photo" :src="user.photo" class="border w-8 rounded-full" alt="photo" />
+                  <Avatar v-else class="bg-slate-500 w-7 rounded-full p-1" />
                 <h1 class="font-bold text-sm font-quicksand">
                   Yo
                 </h1>

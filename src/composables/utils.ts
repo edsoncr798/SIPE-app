@@ -1,4 +1,24 @@
 
+
+
+export const timestampToDatetime = (timestamp: any) => {
+  if (!timestamp) return null;
+  const dateObj = new Date(timestamp.seconds * 1000);
+  const timeObj = new Date(timestamp.seconds * 1000);
+  const dateStr = dateObj.toLocaleDateString('es-PE');
+  const timeStr = timeObj.toLocaleTimeString('es-PE');
+  return `${dateStr} ${timeStr}`;
+};
+
+
+export const getMediaFile = (fileUrl: string) => {
+  if (!fileUrl) return '';
+  if (fileUrl.includes('http')) return fileUrl;
+  const baseUrl = import.meta.env.VITE_APP_BACKEND_URL.slice(0, -1);
+  return `${baseUrl}${fileUrl}`;
+}
+
+
 const base64ToFile = (base64: string, filename: string): File => {
   const arr = base64.split(',');
   const mime = arr[0].match(/:(.*?);/)![1];
@@ -46,6 +66,12 @@ export const comprimirImagenCircular = async (file: File, percentage: number) =>
     };
   });
 };
+
+
+export const checkImageSize = (file: File) => {
+  return file.size / (1024 * 1024) < 3;
+}
+
 
 
 export const comprimirImagenNormal = async (file: File, percentage: number) => {

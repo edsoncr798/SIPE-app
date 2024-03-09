@@ -3,11 +3,11 @@
 </script>
 
 <template>
-  <div class="w-full pt-[90px]">
+  <div class="flex w-full pb-4 md:pt-[90px]">
     <div class="flex gap-10 mx-auto w-[95%]">
-      <profile-card class="w-[20%] hidden sm:block" />
-      <main-content class="w-full sm:w-[60%]" />
-      <post-job-form class="w-[20%] hidden sm:block" />
+      <profile-card class="w-[20%] hidden md:block" />
+      <main-content class="w-full lg:w-[45%]" />
+      <post-job-form class="w-[35%] hidden lg:block" />
     </div>
   </div>
 </template>

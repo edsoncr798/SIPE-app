@@ -1,10 +1,21 @@
 <script setup lang="ts">
 
+import getPublishedJobs from '@/components/works/actions/getPublishedJobs'
+
+onUnmounted( async () => {
+  await getPublishedJobs()
+});
+
+
+onUpdated( async () => {
+  await getPublishedJobs()
+});
+
 </script>
 
 <template>
-  <div>
-    <h1>JobPage</h1>
+  <div class="w-full md:pt-[90px] pb-4">
+    <job-app />
   </div>
 </template>
 

@@ -13,7 +13,7 @@ onMounted(() => {
 
 <template>
   <custom-header />
-  <RouterView class="h-screen pt-16 bg-[#f4f2ee]" />
+  <RouterView class="pt-16 bg-[#f4f2ee]" />
 <!--  <custom-footer />-->
 </template>
 

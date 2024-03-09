@@ -35,16 +35,16 @@ const uploadImageToFirebaseStorage = async (imageFile: any, uid: string) => {
 };
 
 
-const updateProfile = async (userData: IUser, imageFile: File | null) => {
+const updateProfile = async (userData: IUser) => {
   try {
     const userDoc = await getUserDocSnap();
     if (!userDoc) return;
 
-    if (imageFile) {
-      const imageResult = await comprimirImagenCircular(imageFile, 70);
-      const result = await uploadImageToFirebaseStorage(imageResult, userData.uid);
-      if (result) userData.photo = result;
-    }
+    // if (imageFile) {
+    //   const imageResult = await comprimirImagenCircular(imageFile, 70);
+    //   const result = await uploadImageToFirebaseStorage(imageResult, userData.uid);
+    //   if (result) userData.photo = result;
+    // }
 
     await updateDoc(userDoc.ref, {
       ...userData,
@@ -59,7 +59,6 @@ const updateProfile = async (userData: IUser, imageFile: File | null) => {
     })
   } catch (e) {
     console.log('error:', e);
-
     ElMessage({
         message: 'Error al actualizar el perfil',
         duration: 1000,
@@ -69,4 +68,44 @@ const updateProfile = async (userData: IUser, imageFile: File | null) => {
 };
 
 
-export default updateProfile;
+export const updateProfileImage = async (imageFile: File | null, uid: string) => {
+  try {
+    if (!imageFile) return;
+    const imageResult = await comprimirImagenCircular(imageFile, 70);
+    const result = await uploadImageToFirebaseStorage(imageResult, uid);
+    if (result) {
+      const userDoc = await getUserDocSnap();
+      if (!userDoc) return;
+
+      const userData = userDoc.data() as IUser;
+      userData.photo = result;
+
+      await updateDoc(userDoc.ref, {
+        ...userData,
+        updated_at: new Date(),
+      });
+
+      const localStorageData = JSON.parse(localStorage.getItem('user') || '{}');
+
+      localStorageData.photo = result;
+      localStorage.setItem('user', JSON.stringify(localStorageData));
+
+      setLocaStoragesAuth(userData);
+      ElMessage({
+        message: 'Foto de perfil actualizada correctamente',
+        duration: 1000,
+        type: 'success'
+      })
+    }
+  } catch (e) {
+    console.log('error:', e);
+    ElMessage({
+      message: 'Error al actualizar la foto de perfil',
+      duration: 1000,
+      type: 'error',
+    })
+  }
+}
+
+
+export default updateProfile

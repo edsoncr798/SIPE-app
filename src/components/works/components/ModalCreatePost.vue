@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { Avatar, Picture } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
+import profileStore from '@/components/auth/profile.store'
 
-const isPhone = ref(false)
 const description = ref('')
+const imagePicture = ref()
+const userData = computed( () => profileStore.getUser())
+const getFullName = computed(() => profileStore.getFullName())
+const emit = defineEmits(['close']);
+
 const props = defineProps({
   dialogVisible:{
     type: Boolean,
@@ -11,14 +16,16 @@ const props = defineProps({
     required: true,
   }
 });
-
-const emit = defineEmits(['close']);
 const isOpenModal = computed({
   get: () => props.dialogVisible,
   set: () => {
     emit('close');
   },
 });
+
+const setPicture = (e: any) => {
+  ElMessage.success('Imagen subida');
+};
 
 
 const submitPost = () => {
@@ -34,10 +41,10 @@ const submitPost = () => {
   >
     <template #header>
       <div class="flex items-center gap-4 ">
-        <el-image v-if="isPhone"  src="https://via.placeholder.com/150" class="w-14 rounded-full " alt="placeholder" />
+        <el-image v-if="userData.photo"  :src="userData.photo" class="w-14 rounded-full " alt="placeholder" />
         <Avatar v-else class="w-14 rounded-full bg-slate-500 p-2"/>
         <div>
-          <h1>Nombre del usuario</h1>
+          <h1>{{ getFullName }}</h1>
         </div>
       </div>
     </template>
@@ -57,14 +64,15 @@ const submitPost = () => {
         content="subir imagen"
         placement="top-start"
       >
-        <el-button class="custom-btn">
+        <el-button class="custom-btn" @click="imagePicture.click()">
+          <input ref="imageProfileRef" accept=".png, .jpg, .jpeg" class="hidden" type="file" @change="setPicture" />
           <Picture class="w-6" />
         </el-button>
-      </el-tooltip>
+       </el-tooltip>
     </div>
     <template #footer>
       <div class="dialog-footer">
-        <el-button type="primary" @click="submitPost = false">
+        <el-button type="primary" @click="submitPost">
           Publicar
         </el-button>
       </div>
