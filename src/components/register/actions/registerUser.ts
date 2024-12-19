@@ -9,24 +9,13 @@ async function registerUser(model: IUser) {
   try {
     response = await createUserWithEmailAndPassword(auth, email, password || '');
     const db = getFirestore();
-    const userProfileCollection = collection(db, 'user_profiles');
+    const userProfileCollection = collection(db, 'userAdmin');
 
     const userProfileData = {
       uid: response.user.uid,
       email,
       first_name: model.first_name,
       last_name: model.last_name,
-      photo: '',
-      phone: '',
-      background_photo: '',
-      country: '',
-      career: '',
-      city: '',
-      language: '',
-      work_experience: '',
-      education: '',
-      skills: '',
-      summary: '',
       created_at: new Date(),
       updated_at: new Date(),
     };

@@ -11,7 +11,7 @@ export default async function auth_login(model: ILogin) {
     const response = await signInWithEmailAndPassword(auth, email, password);
     // console.log("response: ", response);
     const db = getFirestore();
-    const usersRef = collection(db, 'user_profiles');
+    const usersRef = collection(db, 'userAdmin');
     const userDoc = doc(usersRef, response.user.uid);
     const userDocSnap = await getDoc(userDoc);
 
@@ -19,18 +19,9 @@ export default async function auth_login(model: ILogin) {
     if (!userDocSnap.exists()) {
       user = {
         email: '',
-        phone: '',
-        photo: '',
-        background_photo: '',
-        country: '',
-        city: '',
         uid: response.user.uid,
         first_name: '',
         last_name: '',
-        work_experience: '',
-        education: '',
-        skills: '',
-        summary: '',
         created_at: new Date(),
         updated_at: new Date(),
       };

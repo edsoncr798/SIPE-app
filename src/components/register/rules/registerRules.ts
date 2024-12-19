@@ -16,6 +16,21 @@ const registerRules = {
       trigger: trigger,
     }
   ],
+  document_number: [
+    {
+      required: true,
+      message: 'Por favor ingrese su DNI',
+      trigger: trigger,
+    }
+  ],
+
+  timeOut: [
+    {
+      required: true,
+      message: 'Por favor ingrese la fecha de su asistencia',
+      trigger: trigger,
+    }
+  ],
 
   email: [
     {

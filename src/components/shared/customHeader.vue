@@ -47,10 +47,6 @@ const goToProfile = () => {
           </el-icon>
           <router-link to="/" class=" ">Inicio</router-link>
         </div>
-        <div class="flex-col flex items-center">
-          <el-icon><suitcase /></el-icon>
-          <router-link to="/jobs" class=" ">Empleos</router-link>
-        </div>
         <div v-if="!user.uid" class="flex-col flex items-center">
           <el-icon><user-filled /></el-icon>
           <router-link to="/login">iniciar sesion</router-link>

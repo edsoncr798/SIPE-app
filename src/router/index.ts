@@ -25,15 +25,15 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../views/SignInPage.vue')
   },
   {
+    path: '/attendance',
+    name: 'Attendance',
+    component: () => import('../views/AttendancePage.vue'),
+  },
+  {
     path: '/profile',
     name: 'profile',
     component: () => import('../views/ProfilePage.vue')
   },
-  {
-    path: '/jobs',
-    name: 'jobs',
-    component: () => import('../views/JobPage.vue')
-  }
 ];
 
 const router = createRouter({

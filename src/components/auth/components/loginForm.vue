@@ -41,7 +41,7 @@ const sendLogin = async () => {
 </script>
 
 <template>
-  <div class="flex">
+  <div class="flex w-full h-screen">
     <el-form
       :model="model"
       :rules="loginRules"

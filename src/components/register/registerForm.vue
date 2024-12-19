@@ -36,7 +36,7 @@ const saveInitialData = async () => {
 </script>
 
 <template>
-  <div class="w-full flex">
+  <div class="w-full flex h-screen">
     <el-form
       preventDefault
       :model="initialData"
